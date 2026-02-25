@@ -2,6 +2,35 @@
 
 ---
 
+## 2026-02-25T09:35Z — antigravity — Phase 4: Favoriten, Pagination & Bugfixes
+
+### Neue Dateien
+- **`src/lib/actions/favorites.ts`** — `toggleFavorite` (toggle mit optimistischem Update) + `getUserFavoriteIds` (alle Favoriten des eingeloggten Users)
+- **`src/components/shared/FavoriteButton.tsx`** — Herz-Icon-Button mit `useTransition`, no-flicker state, `e.stopPropagation()` damit der Link nicht triggert
+- **`src/components/shared/Pagination.tsx`** — URL-basierte Pagination mit smartem Ellipsis (zeigt immer erste, letzte, aktuelle ±1 Seite)
+
+### Geänderte Dateien
+- **`src/components/listings/ListingCard.tsx`** — `FavoriteButton` als Overlay oben rechts, `favoriteIds`-Prop für initialen State
+- **`src/components/listings/ListingGrid.tsx`** — `favoriteIds` prop durchgereicht
+- **`src/app/angebote/page.tsx`** — `page`-searchParam, `getUserFavoriteIds` parallel zu `getListings` geladen, `Pagination` eingebaut
+- **`src/lib/queries/listings.ts`** — `!inner` → Left Join (Listings werden nicht durch fehlende Profile ausgeblendet)
+- **`.env.local`** — `NEXT_PUBLIC_SITE_URL=https://www.meindeinunser.com`
+
+### Bugfixes
+- **Confirm-Link → localhost**: Root cause `NEXT_PUBLIC_SITE_URL` nicht gesetzt. Fix: Vercel Env Var + Supabase URL Configuration
+- **Listing nicht sichtbar**: `profiles!inner` blockierte Listings ohne Profil (Trigger-Timing). Fix: Left Join
+
+### Git
+- Commit: `1b3415f` — feat: Phase 4 — FavoriteButton, Pagination, favorites action
+- TypeScript: 0 Fehler
+- Gepusht → Vercel baut
+
+### Noch offen
+- **Phase 5**: Profil-Dashboard, Avatar-Upload, Öffentliches Profil
+- **Phase 7**: Launch-Prep
+
+---
+
 ## 2026-02-25T09:15Z — antigravity — Phase 3: Bilder-Upload
 
 ### Neue Dateien
