@@ -22,6 +22,7 @@ export function ProfileForm({ profile }: ProfileFormProps) {
     const [showEmail, setShowEmail] = useState(profile.show_email);
     const [showPhone, setShowPhone] = useState(profile.show_phone);
     const [avatarUrl, setAvatarUrl] = useState(profile.avatar_url);
+    const [avatarUploading, setAvatarUploading] = useState(false);
     const avatarInputRef = useRef<HTMLInputElement>(null);
 
     function handleSubmit(formData: FormData) {
@@ -39,11 +40,14 @@ export function ProfileForm({ profile }: ProfileFormProps) {
     async function handleAvatarChange(e: React.ChangeEvent<HTMLInputElement>) {
         const file = e.target.files?.[0];
         if (!file) return;
+        setAvatarUploading(true);
+        setError(null);
         const fd = new FormData();
         fd.append("avatar", file);
         const res = await uploadAvatar(fd);
         if (res.url) setAvatarUrl(res.url);
         if (res.error) setError(res.error);
+        setAvatarUploading(false);
     }
 
     return (
@@ -58,10 +62,19 @@ export function ProfileForm({ profile }: ProfileFormProps) {
                     ) : (
                         <Avatar name={profile.display_name} size="lg" className="h-20 w-20 text-xl" />
                     )}
+                    {avatarUploading && (
+                        <div className="absolute inset-0 flex items-center justify-center rounded-full bg-black/40">
+                            <svg className="h-5 w-5 animate-spin text-white" fill="none" viewBox="0 0 24 24">
+                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                            </svg>
+                        </div>
+                    )}
                     <button
                         type="button"
                         onClick={() => avatarInputRef.current?.click()}
-                        className="absolute -bottom-1 -right-1 flex h-7 w-7 items-center justify-center rounded-full bg-primary text-white shadow hover:bg-primary-hover transition-colors"
+                        disabled={avatarUploading}
+                        className="absolute -bottom-1 -right-1 flex h-7 w-7 items-center justify-center rounded-full bg-primary text-white shadow hover:bg-primary-hover transition-colors disabled:opacity-50"
                         aria-label="Profilbild ändern"
                     >
                         <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5}>

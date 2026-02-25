@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
 import { toggleFavorite } from "@/lib/actions/favorites";
 import { cn } from "@/lib/utils/cn";
 
@@ -17,13 +18,18 @@ export function FavoriteButton({
 }: FavoriteButtonProps) {
     const [favorited, setFavorited] = useState(initialFavorited);
     const [isPending, startTransition] = useTransition();
+    const router = useRouter();
 
     function handleClick(e: React.MouseEvent) {
-        e.preventDefault(); // prevent Link navigation if inside a card
+        e.preventDefault();
         e.stopPropagation();
 
         startTransition(async () => {
             const result = await toggleFavorite(listingId);
+            if (result.error === "Nicht angemeldet.") {
+                router.push("/login?redirect=/angebote");
+                return;
+            }
             if (!result.error) {
                 setFavorited(result.favorited);
             }

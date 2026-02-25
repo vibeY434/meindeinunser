@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useCallback } from "react";
+import { useCallback, useRef } from "react";
 import { Input } from "@/components/ui/Input";
 import { LISTING_TYPES } from "@/lib/constants/listing-types";
 import { CATEGORIES } from "@/lib/constants/categories";
@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils/cn";
 export function ListingFilters() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const searchTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const currentType = searchParams.get("type") ?? "";
   const currentCategory = searchParams.get("category") ?? "";
@@ -38,10 +39,11 @@ export function ListingFilters() {
         placeholder="Suche nach Angeboten..."
         defaultValue={currentSearch}
         onChange={(e) => {
-          const timeout = setTimeout(() => {
-            updateParams("search", e.target.value);
+          const value = e.target.value;
+          if (searchTimeoutRef.current) clearTimeout(searchTimeoutRef.current);
+          searchTimeoutRef.current = setTimeout(() => {
+            updateParams("search", value);
           }, 400);
-          return () => clearTimeout(timeout);
         }}
       />
 

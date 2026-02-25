@@ -32,8 +32,8 @@ export function Footer() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/ueber-uns" className="text-sm text-text-light hover:text-text transition-colors">
-                      Über uns
+                    <Link href="/angebot-erstellen" className="text-sm text-text-light hover:text-text transition-colors">
+                      Angebot erstellen
                     </Link>
                   </li>
                 </ul>

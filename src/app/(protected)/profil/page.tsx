@@ -6,15 +6,14 @@ import { Button } from "@/components/ui/Button";
 import { ProfileForm } from "@/components/profile/ProfileForm";
 import { ListingGrid } from "@/components/listings/ListingGrid";
 import { EmptyState } from "@/components/shared/EmptyState";
+import { ListingActions } from "@/components/listings/ListingActions";
 import { getProfileWithListings, getUserFavoriteListings } from "@/lib/queries/profiles";
-import { updateListingStatus, deleteListing } from "@/lib/actions/listings";
 import { signOut } from "@/lib/actions/auth";
 import Link from "next/link";
 import type { Profile } from "@/types";
 
 export const metadata = { title: "Mein Profil" };
 
-// Status badge colours
 const STATUS_STYLES: Record<string, string> = {
   aktiv: "bg-green-100 text-green-700",
   pausiert: "bg-yellow-100 text-yellow-700",
@@ -75,7 +74,7 @@ export default async function ProfilPage() {
               <div className="space-y-3">
                 {listings.map((listing) => (
                   <Card key={listing.id}>
-                    <CardContent className="p-4 flex items-center justify-between gap-4">
+                    <CardContent className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 flex-wrap">
                           <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${STATUS_STYLES[listing.status]}`}>
@@ -86,29 +85,7 @@ export default async function ProfilPage() {
                           </Link>
                         </div>
                       </div>
-                      <div className="flex items-center gap-2 flex-shrink-0">
-                        {/* Status toggle */}
-                        <form action={async () => {
-                          "use server";
-                          const next = listing.status === "aktiv" ? "pausiert" : "aktiv";
-                          await updateListingStatus(listing.id, next);
-                        }}>
-                          <Button variant="outline" size="sm" type="submit">
-                            {listing.status === "aktiv" ? "Pausieren" : "Aktivieren"}
-                          </Button>
-                        </form>
-                        <Link href={`/angebot-bearbeiten/${listing.id}`}>
-                          <Button variant="outline" size="sm">Bearbeiten</Button>
-                        </Link>
-                        <form action={async () => {
-                          "use server";
-                          await deleteListing(listing.id);
-                        }}>
-                          <Button variant="outline" size="sm" type="submit" className="text-red-500 hover:text-red-700 hover:border-red-300">
-                            Löschen
-                          </Button>
-                        </form>
-                      </div>
+                      <ListingActions listingId={listing.id} status={listing.status} />
                     </CardContent>
                   </Card>
                 ))}
