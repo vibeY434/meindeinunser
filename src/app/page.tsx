@@ -5,9 +5,14 @@ import { Card, CardContent } from "@/components/ui/Card";
 import { ListingGrid } from "@/components/listings/ListingGrid";
 import { CATEGORIES } from "@/lib/constants/categories";
 import { getFeaturedListings } from "@/lib/queries/listings";
+import { createClient } from "@/lib/supabase/server";
 
 export default async function HomePage() {
-  const featuredListings = await getFeaturedListings(6);
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  const isGuest = !user;
+
+  const featuredListings = await getFeaturedListings(isGuest ? 3 : 6);
 
   return (
     <>
@@ -100,7 +105,7 @@ export default async function HomePage() {
                 Alle anzeigen &rarr;
               </Link>
             </div>
-            <ListingGrid listings={featuredListings} />
+            <ListingGrid listings={featuredListings} isGuest={isGuest} />
           </Container>
         </section>
       )}

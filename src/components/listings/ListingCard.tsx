@@ -11,6 +11,7 @@ import type { ListingWithProfile } from "@/types";
 interface ListingCardProps {
   listing: ListingWithProfile;
   favoriteIds?: string[];
+  isGuest?: boolean;
 }
 
 // Retrieve Supabase URL safely
@@ -21,15 +22,16 @@ function getPublicUrl(path: string): string {
   return `${SUPABASE_URL}/storage/v1/object/public/listing-images/${path}`;
 }
 
-export function ListingCard({ listing, favoriteIds = [] }: ListingCardProps) {
+export function ListingCard({ listing, favoriteIds = [], isGuest = false }: ListingCardProps) {
   const districtLabel =
     MAINZ_DISTRICTS.find((d) => d.value === listing.district)?.label ?? listing.district;
 
   const hasImage = listing.images && listing.images.length > 0;
   const isFavorited = favoriteIds.includes(listing.id);
+  const href = isGuest ? "/login" : `/angebote/${listing.id}`;
 
   return (
-    <Link href={`/angebote/${listing.id}`}>
+    <Link href={href}>
       <Card hover className="h-full flex flex-col">
         {/* Image */}
         <div className="relative aspect-[4/3] bg-background">
@@ -59,18 +61,34 @@ export function ListingCard({ listing, favoriteIds = [] }: ListingCardProps) {
         {/* Content */}
         <CardContent className="flex-1 flex flex-col gap-2">
           <h3 className="font-semibold text-text line-clamp-1">{listing.title}</h3>
-          <p className="text-sm text-text-light line-clamp-2 flex-1">
-            {listing.description}
-          </p>
+
+          {isGuest ? (
+            <p className="text-sm text-text-light italic flex-1">
+              Melde dich an, um Details und Beschreibungen zu sehen.
+            </p>
+          ) : (
+            <p className="text-sm text-text-light line-clamp-2 flex-1">
+              {listing.description}
+            </p>
+          )}
+
           <div className="flex items-center justify-between pt-2 border-t border-border">
             <div className="flex items-center gap-2">
-              <Avatar
-                name={listing.profiles.display_name}
-                src={listing.profiles.avatar_url}
-                size="sm"
-              />
+              {isGuest ? (
+                <Avatar name="?" size="sm" />
+              ) : (
+                <Avatar
+                  name={listing.profiles.display_name}
+                  src={listing.profiles.avatar_url}
+                  size="sm"
+                />
+              )}
               <div className="text-xs">
-                <p className="font-medium text-text">{listing.profiles.display_name}</p>
+                {isGuest ? (
+                  <p className="font-medium text-text">Verborgener Nutzer</p>
+                ) : (
+                  <p className="font-medium text-text">{listing.profiles.display_name}</p>
+                )}
                 <p className="text-text-light">{districtLabel}</p>
               </div>
             </div>
