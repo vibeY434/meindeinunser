@@ -2,6 +2,26 @@
 
 ---
 
+## 2026-02-25T14:45Z — antigravity — Gästeschutz & Weiterleitung (Option B)
+
+### Änderungen
+- **Globale Weiterleitung für Gäste:** Die Route `/angebote` wurde dem Session-Middleware-Schutz hinzugefügt (`src/lib/supabase/middleware.ts`). Gäste (nicht eingeloggte Benutzer), die versuchen, direkt per URL auf `/angebote` oder die Detailseiten eines Angebots zuzugreifen, werden ab sofort global auf `/login` weitergeleitet. Dadurch ist sichergestellt, dass die Detailinformationen nur für angemeldete Benutzer sichtbar bleiben (Option B).
+
+---
+
+## 2026-02-25T13:06Z — antigravity — Feature-Evaluierung (Post-MVP) & Status-Check
+
+### Feature-Evaluierung
+Drei neue Feature-Ideen wurden geprüft und ins Backlog (Post-MVP) der `PLAN.md` aufgenommen:
+1. **Neueste Angebote auf der Landingpage:** Anonymisierte Ansicht (Bild, Titel, Stadtteil) für Konversion/Trust.
+2. **Kartenansicht (Map-View):** Unscharfer Radius (ca. 500m) statt genauer Adressen zum Diebstahlschutz.
+3. **Nachrichten & Manueller Verleih-Status:** Freitext-Chat-Anfragen und manuelles "Pausieren" von Inseraten statt eines bindenden, komplexen Buchungskalenders, um rechtliche Haftungsrisiken zu umgehen.
+
+### Statusbericht
+Die Roadmap in der Datei `PLAN.md` wurde erfolgreich um diese Backlog-Punkte ergänzt. Das Projekt selbst ist gemäß den bisher dokumentierten Phasen (0 bis 7) vollständig eingerichtet und lauffähig.
+
+---
+
 ## 2026-02-25T18:30Z — claude-code — Bestandsaufnahme & fehlende Features
 
 ### Bestandsaufnahme
