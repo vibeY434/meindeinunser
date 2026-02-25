@@ -2,10 +2,12 @@ import { Suspense } from "react";
 import { Container } from "@/components/layout/Container";
 import { ListingGrid } from "@/components/listings/ListingGrid";
 import { ListingFilters } from "@/components/listings/ListingFilters";
+import { Pagination } from "@/components/shared/Pagination";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { Button } from "@/components/ui/Button";
 import { Skeleton } from "@/components/ui/Skeleton";
 import { getListings } from "@/lib/queries/listings";
+import { getUserFavoriteIds } from "@/lib/actions/favorites";
 import Link from "next/link";
 import type { ListingFilters as Filters } from "@/types";
 
@@ -14,8 +16,19 @@ export const metadata = {
   description: "Durchstöbere Angebote deiner Nachbarn in Mainz — Verleihen, Verschenken, Suchen.",
 };
 
-async function ListingsContent({ filters }: { filters: Filters }) {
-  const { listings, total } = await getListings(filters);
+const PER_PAGE = 12;
+
+async function ListingsContent({
+  filters,
+  page,
+}: {
+  filters: Filters;
+  page: number;
+}) {
+  const [{ listings, total }, favoriteIds] = await Promise.all([
+    getListings(filters, page),
+    getUserFavoriteIds(),
+  ]);
 
   if (listings.length === 0) {
     return (
@@ -36,7 +49,10 @@ async function ListingsContent({ filters }: { filters: Filters }) {
       <p className="text-sm text-text-light mb-4">
         {total} {total === 1 ? "Angebot" : "Angebote"} gefunden
       </p>
-      <ListingGrid listings={listings} />
+      <ListingGrid listings={listings} favoriteIds={favoriteIds} />
+      <Suspense>
+        <Pagination total={total} perPage={PER_PAGE} currentPage={page} />
+      </Suspense>
     </>
   );
 }
@@ -61,9 +77,17 @@ function ListingsSkeleton() {
 export default async function AngebotePage({
   searchParams,
 }: {
-  searchParams: Promise<{ type?: string; category?: string; district?: string; search?: string }>;
+  searchParams: Promise<{
+    type?: string;
+    category?: string;
+    district?: string;
+    search?: string;
+    page?: string;
+  }>;
 }) {
   const params = await searchParams;
+  const page = Math.max(1, parseInt(params.page ?? "1", 10));
+
   const filters: Filters = {
     type: params.type as Filters["type"],
     category: params.category as Filters["category"],
@@ -92,7 +116,7 @@ export default async function AngebotePage({
       </div>
 
       <Suspense fallback={<ListingsSkeleton />}>
-        <ListingsContent filters={filters} />
+        <ListingsContent filters={filters} page={page} />
       </Suspense>
     </Container>
   );

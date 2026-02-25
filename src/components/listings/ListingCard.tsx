@@ -3,19 +3,22 @@ import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/Card";
 import { Avatar } from "@/components/ui/Avatar";
 import { ListingTypeBadge } from "./ListingTypeBadge";
+import { FavoriteButton } from "@/components/shared/FavoriteButton";
 import { timeAgo } from "@/lib/utils/format-date";
 import { MAINZ_DISTRICTS } from "@/lib/constants/districts";
 import type { ListingWithProfile } from "@/types";
 
 interface ListingCardProps {
   listing: ListingWithProfile;
+  favoriteIds?: string[];
 }
 
-export function ListingCard({ listing }: ListingCardProps) {
+export function ListingCard({ listing, favoriteIds = [] }: ListingCardProps) {
   const districtLabel =
     MAINZ_DISTRICTS.find((d) => d.value === listing.district)?.label ?? listing.district;
 
   const hasImage = listing.images && listing.images.length > 0;
+  const isFavorited = favoriteIds.includes(listing.id);
 
   return (
     <Link href={`/angebote/${listing.id}`}>
@@ -39,6 +42,9 @@ export function ListingCard({ listing }: ListingCardProps) {
           )}
           <div className="absolute top-2 left-2">
             <ListingTypeBadge type={listing.type} />
+          </div>
+          <div className="absolute top-2 right-2">
+            <FavoriteButton listingId={listing.id} initialFavorited={isFavorited} />
           </div>
         </div>
 
