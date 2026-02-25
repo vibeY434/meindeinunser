@@ -18,7 +18,7 @@ export async function getProfileWithListings(id: string) {
         supabase.from("profiles").select("*").eq("id", id).single(),
         supabase
             .from("listings")
-            .select("*, profiles(id, display_name, avatar_url, district)")
+            .select("*, profiles!listings_user_id_fkey(id, display_name, avatar_url, district)")
             .eq("user_id", id)
             .order("created_at", { ascending: false }),
     ]);
@@ -32,7 +32,7 @@ export async function getUserFavoriteListings(userId: string) {
     const supabase = await createClient();
     const { data, error } = await supabase
         .from("favorites")
-        .select("listing_id, listings(*, profiles(id, display_name, avatar_url, district))")
+        .select("listing_id, listings(*, profiles!listings_user_id_fkey(id, display_name, avatar_url, district))")
         .eq("user_id", userId)
         .order("created_at", { ascending: false });
 

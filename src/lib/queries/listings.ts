@@ -11,7 +11,7 @@ export async function getListings(
 
   let query = supabase
     .from("listings")
-    .select("*, profiles(id, display_name, avatar_url, district)", { count: "exact" })
+    .select("*, profiles!listings_user_id_fkey(id, display_name, avatar_url, district)", { count: "exact" })
     .eq("status", "aktiv")
     .order("created_at", { ascending: false });
 
@@ -50,7 +50,7 @@ export async function getListingById(id: string) {
 
   const { data, error } = await supabase
     .from("listings")
-    .select("*, profiles(id, display_name, avatar_url, district, email, phone, show_email, show_phone, bio, created_at)")
+    .select("*, profiles!listings_user_id_fkey(id, display_name, avatar_url, district, email, phone, show_email, show_phone, bio, created_at)")
     .eq("id", id)
     .single();
 
@@ -66,7 +66,7 @@ export async function getFeaturedListings(limit = 6): Promise<ListingWithProfile
 
   const { data, error } = await supabase
     .from("listings")
-    .select("*, profiles(id, display_name, avatar_url, district)")
+    .select("*, profiles!listings_user_id_fkey(id, display_name, avatar_url, district)")
     .eq("status", "aktiv")
     .order("created_at", { ascending: false })
     .limit(limit);
