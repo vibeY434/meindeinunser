@@ -2,6 +2,38 @@
 
 ---
 
+## 2026-02-25T22:00Z — claude-code — PWA, Lighthouse, Mobile & Accessibility
+
+### Lighthouse-Audit (Ergebnis: 99/94/96/100)
+- Performance 99, Accessibility 94, Best Practices 96, SEO 100
+- **Fix Farbkontrast:** CTA-Sektion `text-blue-100` → `text-white/80` (besserer Kontrast)
+- **Fix Heading-Hierarchie:** Footer `h4` → `h3` (Screen-Reader-Navigation)
+
+### PWA-Setup
+- `public/manifest.json` — Web App Manifest (standalone, Portrait, deutsch)
+- `public/icon-192.svg`, `public/icon-512.svg`, `public/icon-maskable.svg` — SVG-Icons in Brand-Farbe
+- `public/sw.js` — Service Worker (Cache-first für Navigation + Static Assets)
+- `src/components/shared/ServiceWorkerRegistrar.tsx` — Client-Component für SW-Registrierung
+- `src/app/layout.tsx` — Manifest-Link, Apple Web App Metadata, SW-Registrar eingebunden
+
+### Mobile-Responsiveness Fixes
+- **Touch-Targets ≥ 40-44px:** Header-Burger (`min-h-[44px] min-w-[44px]`), FavoriteButton (`h-10 w-10`), Pagination-Buttons (`h-10 w-10`), Avatar-Edit-Button (`h-9 w-9`), ImageUpload Remove (`h-8 w-8`)
+- **Sticky Sidebar nur Desktop:** Detailseite + öffentliches Profil `sticky top-24` → `lg:sticky lg:top-24`
+- **ImageUpload Remove-Buttons:** Auf Mobile immer sichtbar (`sm:opacity-0 sm:group-hover:opacity-100` statt `opacity-0 group-hover:opacity-100`)
+- **Footer Gap responsiv:** `gap-12` → `gap-8 sm:gap-12`
+
+### Accessibility
+- Pagination: `aria-label="Seite X"` + `aria-current="page"` auf aktiver Seite
+
+### Build & Deploy
+- `next build`: 0 Fehler, 17 Routen
+- Commit `255bb62`, gepusht → Vercel auto-deploy
+
+### Nächster Schritt
+- Full Redesign geplant: "Nachbarschafts-Wärme" (Teal + Amber, weiche Schatten, Bottom Navigation, Airbnb-Vibes)
+
+---
+
 ## 2026-02-25T14:45Z — antigravity — Gästeschutz & Weiterleitung (Option B)
 
 ### Änderungen
