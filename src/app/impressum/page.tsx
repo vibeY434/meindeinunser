@@ -17,25 +17,25 @@ export default function ImpressumPage() {
           <div>
             <h2 className="text-base font-semibold mb-2">Anbieter</h2>
             <p className="text-text-light">
-              [Name / Firma]<br />
-              [Straße und Hausnummer]<br />
-              [PLZ und Ort]
+              Dominik Weyh<br />
+              Adolf-Ernst-Schuth-Straße 2a<br />
+              55122 Mainz
             </p>
           </div>
 
           <div>
             <h2 className="text-base font-semibold mb-2">Kontakt</h2>
             <p className="text-text-light">
-              E-Mail: [E-Mail-Adresse]<br />
-              Telefon: [Telefonnummer]
+              E-Mail: weyh.business@gmail.com
             </p>
           </div>
 
           <div>
             <h2 className="text-base font-semibold mb-2">Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
             <p className="text-text-light">
-              [Name]<br />
-              [Adresse]
+              Dominik Weyh<br />
+              Adolf-Ernst-Schuth-Straße 2a<br />
+              55122 Mainz
             </p>
           </div>
 

@@ -23,10 +23,10 @@ export default function DatenschutzPage() {
           <section>
             <h2 className="text-base font-semibold mb-2">2. Verantwortliche Stelle</h2>
             <p className="text-text-light">
-              [Name / Firma]<br />
-              [Straße und Hausnummer]<br />
-              [PLZ und Ort]<br />
-              E-Mail: [E-Mail-Adresse]
+              Dominik Weyh<br />
+              Adolf-Ernst-Schuth-Straße 2a<br />
+              55122 Mainz<br />
+              E-Mail: weyh.business@gmail.com
             </p>
           </section>
 
