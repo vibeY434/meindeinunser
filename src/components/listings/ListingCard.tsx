@@ -13,6 +13,14 @@ interface ListingCardProps {
   favoriteIds?: string[];
 }
 
+// Retrieve Supabase URL safely
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+
+function getPublicUrl(path: string): string {
+  if (path.startsWith("http")) return path;
+  return `${SUPABASE_URL}/storage/v1/object/public/listing-images/${path}`;
+}
+
 export function ListingCard({ listing, favoriteIds = [] }: ListingCardProps) {
   const districtLabel =
     MAINZ_DISTRICTS.find((d) => d.value === listing.district)?.label ?? listing.district;
@@ -27,7 +35,7 @@ export function ListingCard({ listing, favoriteIds = [] }: ListingCardProps) {
         <div className="relative aspect-[4/3] bg-background">
           {hasImage ? (
             <Image
-              src={listing.images[0]}
+              src={getPublicUrl(listing.images[0])}
               alt={listing.title}
               fill
               className="object-cover"
