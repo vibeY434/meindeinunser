@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/Input";
 import { Textarea } from "@/components/ui/Textarea";
 import { Select } from "@/components/ui/Select";
 import { Button } from "@/components/ui/Button";
+import { ImageUpload } from "@/components/listings/ImageUpload";
 import { LISTING_TYPES } from "@/lib/constants/listing-types";
 import { CATEGORIES } from "@/lib/constants/categories";
 import { MAINZ_DISTRICTS } from "@/lib/constants/districts";
@@ -20,6 +21,7 @@ export function ListingForm({ listing }: ListingFormProps) {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [selectedType, setSelectedType] = useState(listing?.type ?? "verleihen");
+  const [images, setImages] = useState<string[]>(listing?.images ?? []);
 
   const isEdit = !!listing;
 
@@ -28,11 +30,7 @@ export function ListingForm({ listing }: ListingFormProps) {
     setError(null);
 
     formData.set("type", selectedType);
-
-    // Add images as JSON if present
-    if (listing?.images) {
-      formData.set("images", JSON.stringify(listing.images));
-    }
+    formData.set("images", JSON.stringify(images));
 
     const result = isEdit
       ? await updateListing(listing.id, formData)
@@ -113,7 +111,11 @@ export function ListingForm({ listing }: ListingFormProps) {
         className="min-h-[150px]"
       />
 
-      {/* Image upload placeholder - will be added in Phase 3 */}
+      <ImageUpload
+        value={images}
+        onChange={setImages}
+        disabled={loading}
+      />
 
       <div className="flex gap-3 pt-2">
         <Button type="submit" loading={loading} className="flex-1">

@@ -4,13 +4,13 @@ import { Avatar } from "@/components/ui/Avatar";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { ListingTypeBadge } from "@/components/listings/ListingTypeBadge";
+import { ImageGallery } from "@/components/listings/ImageGallery";
 import { getListingById } from "@/lib/queries/listings";
 import { formatDate } from "@/lib/utils/format-date";
 import { MAINZ_DISTRICTS } from "@/lib/constants/districts";
 import { CATEGORIES } from "@/lib/constants/categories";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
 import type { ListingType, ListingCategory } from "@/types";
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
@@ -44,8 +44,6 @@ export default async function AngebotDetailPage({ params }: { params: Promise<{ 
   const districtLabel = MAINZ_DISTRICTS.find((d) => d.value === listing.district)?.label ?? listing.district;
   const categoryLabel = CATEGORIES.find((c) => c.value === listing.category)?.label ?? listing.category;
   const categoryIcon = CATEGORIES.find((c) => c.value === listing.category)?.icon ?? "";
-  const hasImages = listing.images && listing.images.length > 0;
-
   return (
     <Container className="py-8">
       <Link
@@ -61,18 +59,8 @@ export default async function AngebotDetailPage({ params }: { params: Promise<{ 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Main content */}
         <div className="lg:col-span-2 space-y-6">
-          {/* Image */}
-          {hasImages && (
-            <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-background">
-              <Image
-                src={listing.images[0]}
-                alt={listing.title}
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-          )}
+          {/* Image gallery */}
+          <ImageGallery images={listing.images} title={listing.title} />
 
           {/* Listing info */}
           <div>
