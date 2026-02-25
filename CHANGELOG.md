@@ -2,6 +2,23 @@
 
 ---
 
+## 2026-02-25T10:00Z — antigravity — Phase 7: Seed-Daten & Letzte Fixes
+
+### Änderungen & Fixes
+- **Datenbank-Seeding:** Skript im SQL-Editor ausgeführt, um einen Test-User ("Max") und 6 realistische Beispiel-Angebote mit Unsplash-Bildern für Mainz anzulegen.
+- **Bugfix Supabase Query:** Fehlermeldung (`PGRST201`, ambiguous relationship) behoben. Durch die neue `favorites`-Tabelle gab es zwei Pfade zwischen `listings` und `profiles`. Queries (`getListings`, `getProfileWithListings`, etc.) explizit auf `profiles!listings_user_id_fkey` umgestellt.
+- **Bugfix Bilder:** `next/image` hat die Unsplash-Demobilder blockiert. `images.unsplash.com` zu `remotePatterns` in `next.config.ts` hinzugefügt.
+- **Bugfix Image-URL-Formatierung:** Uploads vom Handy speichern nur den Dateinamen. `ListingCard` parst jetzt korrekt zwischen vollen HTTP-URLs (Demos) und Supabase-Pfaden.
+- **Rechtliches:** Platzhalter in `Impressum` und `Datenschutz` durch reale Daten (Dominik Weyh, Adresse, E-Mail) ersetzt. Telefonnummer bewusst weggelassen, um Spam zu vermeiden.
+
+### Git
+- Commits: `a2814a8` (docs: legal info), `ceab94d` (fix: foreign key path), `d66b33a` (fix: image paths & next.config)
+
+### Status
+- **Phase 7 (Launch Prep)** ist nun weitestgehend abgeschlossen. Plattform ist voll funktionsfähig und befüllt!
+
+---
+
 ## 2026-02-25T09:50Z — antigravity — Phase 5: Profil-Dashboard & öffentliches Profil
 
 ### Neue Dateien
