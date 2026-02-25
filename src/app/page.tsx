@@ -140,7 +140,7 @@ export default async function HomePage() {
             <h2 className="text-2xl sm:text-3xl font-bold">
               Werde Teil der Nachbarschaft
             </h2>
-            <p className="mt-3 text-blue-100 max-w-md mx-auto">
+            <p className="mt-3 text-white/80 max-w-md mx-auto">
               Registriere dich kostenlos und teile mit deinen Nachbarn in Mainz.
             </p>
             <div className="mt-6">

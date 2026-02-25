@@ -32,7 +32,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Sidebar */}
         <div>
-          <Card className="sticky top-24">
+          <Card className="lg:sticky lg:top-24">
             <CardContent className="p-6 space-y-4">
               {/* Avatar */}
               <div className="flex flex-col items-center text-center">

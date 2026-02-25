@@ -84,7 +84,7 @@ export default async function AngebotDetailPage({ params }: { params: Promise<{ 
 
         {/* Sidebar - Contact */}
         <div>
-          <Card className="sticky top-24">
+          <Card className="lg:sticky lg:top-24">
             <CardContent className="p-6 space-y-4">
               <div className="flex items-center gap-3">
                 <Avatar name={profile.display_name} src={profile.avatar_url} size="lg" />

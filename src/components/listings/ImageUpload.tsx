@@ -180,7 +180,7 @@ export function ImageUpload({ value, onChange, disabled }: ImageUploadProps) {
                                 <button
                                     type="button"
                                     onClick={() => handleRemove(path)}
-                                    className="absolute top-1 right-1 flex h-6 w-6 items-center justify-center rounded-full bg-black/60 text-white opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-600"
+                                    className="absolute top-1 right-1 flex h-8 w-8 items-center justify-center rounded-full bg-black/60 text-white sm:opacity-0 sm:group-hover:opacity-100 transition-opacity hover:bg-red-600"
                                     aria-label="Bild entfernen"
                                 >
                                     <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5}>

@@ -1,0 +1,31 @@
+{
+  "name": "meindeinunser — Nachbarn verbinden in Mainz",
+  "short_name": "meindeinunser",
+  "description": "Verleihen, Verschenken, Suchen — die Nachbarschafts-Plattform für Mainz.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F0F5FA",
+  "theme_color": "#046BD2",
+  "orientation": "portrait-primary",
+  "lang": "de",
+  "icons": [
+    {
+      "src": "/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}

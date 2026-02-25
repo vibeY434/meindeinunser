@@ -22,9 +22,9 @@ export function Footer() {
               </p>
             </div>
 
-            <div className="flex gap-12">
+            <div className="flex gap-8 sm:gap-12">
               <div>
-                <h4 className="text-sm font-semibold text-text mb-3">Plattform</h4>
+                <h3 className="text-sm font-semibold text-text mb-3">Plattform</h3>
                 <ul className="space-y-2">
                   <li>
                     <Link href="/angebote" className="text-sm text-text-light hover:text-text transition-colors">
@@ -39,7 +39,7 @@ export function Footer() {
                 </ul>
               </div>
               <div>
-                <h4 className="text-sm font-semibold text-text mb-3">Rechtliches</h4>
+                <h3 className="text-sm font-semibold text-text mb-3">Rechtliches</h3>
                 <ul className="space-y-2">
                   <li>
                     <Link href="/impressum" className="text-sm text-text-light hover:text-text transition-colors">

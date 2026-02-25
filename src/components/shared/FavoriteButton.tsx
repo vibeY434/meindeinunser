@@ -43,7 +43,7 @@ export function FavoriteButton({
             disabled={isPending}
             aria-label={favorited ? "Aus Favoriten entfernen" : "Zu Favoriten hinzufügen"}
             className={cn(
-                "flex h-8 w-8 items-center justify-center rounded-full transition-all",
+                "flex h-10 w-10 items-center justify-center rounded-full transition-all",
                 "bg-white/80 backdrop-blur-sm shadow-sm hover:scale-110",
                 isPending && "opacity-50 pointer-events-none",
                 className
