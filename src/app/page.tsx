@@ -2,9 +2,13 @@ import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
 import { Card, CardContent } from "@/components/ui/Card";
+import { ListingGrid } from "@/components/listings/ListingGrid";
 import { CATEGORIES } from "@/lib/constants/categories";
+import { getFeaturedListings } from "@/lib/queries/listings";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const featuredListings = await getFeaturedListings(6);
+
   return (
     <>
       {/* Hero */}
@@ -84,8 +88,25 @@ export default function HomePage() {
         </Container>
       </section>
 
+      {/* Neueste Angebote */}
+      {featuredListings.length > 0 && (
+        <section className="py-16 bg-surface">
+          <Container>
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="text-2xl font-bold text-text">
+                Neueste Angebote
+              </h2>
+              <Link href="/angebote" className="text-sm font-medium text-primary hover:text-primary-hover transition-colors">
+                Alle anzeigen &rarr;
+              </Link>
+            </div>
+            <ListingGrid listings={featuredListings} />
+          </Container>
+        </section>
+      )}
+
       {/* Kategorien */}
-      <section className="py-16 bg-surface">
+      <section className={featuredListings.length > 0 ? "py-16" : "py-16 bg-surface"}>
         <Container>
           <h2 className="text-2xl font-bold text-text text-center mb-10">
             Kategorien
