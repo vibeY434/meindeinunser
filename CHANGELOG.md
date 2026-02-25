@@ -2,6 +2,41 @@
 
 ---
 
+## 2026-02-25T18:30Z — claude-code — Bestandsaufnahme & fehlende Features
+
+### Bestandsaufnahme
+- GitHub-Stand (origin/main) vollständig mit PLAN.md und CHANGELOG.md abgeglichen
+- Identifiziert: AvatarUpload, profile validation, favorites queries waren **nicht fehlend** — Funktionalität ist in ProfileForm.tsx, actions/profile.ts und queries/profiles.ts integriert
+- Tatsächlich fehlend: Angebot-Bearbeiten-Seite (war Stub) + Homepage ohne DB-Daten
+
+### Änderungen
+- **`src/app/(protected)/angebot-bearbeiten/[id]/page.tsx`** — Platzhalter-Stub durch vollständige Bearbeitungsseite ersetzt:
+  - Auth-Check (redirect zu /login)
+  - Owner-Check (nur Ersteller darf bearbeiten)
+  - ListingForm mit Pre-Fill aller Felder (inkl. Bilder)
+  - Zurück-zum-Profil Navigation
+- **`src/app/page.tsx`** — Homepage von statisch auf async Server Component umgebaut:
+  - Fetched `getFeaturedListings(6)` aus Supabase
+  - Neue Sektion "Neueste Angebote" mit ListingGrid + "Alle anzeigen" Link
+  - Dynamische bg-Klasse für Kategorien-Sektion (vermeidet doppeltes bg-surface)
+
+### Build & Deploy
+- `next build`: 0 TypeScript-Fehler, alle 17 Routen kompilieren
+- Commit `5fd906e`, gepusht → Vercel auto-deploy
+
+### Recherche: PWA / Mobile App / Design
+- Umfassende Recherche zu PWA-Strategie, Native-App-Optionen, Mobile-Design Best Practices durchgeführt
+- Ergebnis: PWA-first Ansatz empfohlen (Manifest + Service Worker + Install-Prompt)
+- Für Google Play: TWA (Trusted Web Activity) — minimaler Aufwand
+- iOS App Store erst bei nachgewiesener Nachfrage (Capacitor, 99$/Jahr Apple Dev)
+- Mobile-Design: Bottom Navigation, Touch Targets 44x44px, Thumb Zone beachten
+
+### Status
+- **Alle Code-Phasen (0-7) sind funktional abgeschlossen**
+- Nächste Schritte: Design-Review, Mobiloptimierung, PWA-Setup, Domain-Setup
+
+---
+
 ## 2026-02-25T10:00Z — antigravity — Phase 7: Seed-Daten & Letzte Fixes
 
 ### Änderungen & Fixes
