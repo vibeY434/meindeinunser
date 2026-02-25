@@ -2,6 +2,33 @@
 
 ---
 
+## 2026-02-25T09:50Z — antigravity — Phase 5: Profil-Dashboard & öffentliches Profil
+
+### Neue Dateien
+- **`src/lib/actions/profile.ts`** — `updateProfile` (Zod-validiert) + `uploadAvatar` (upsert in Storage, max 2 MB)
+- **`src/lib/queries/profiles.ts`** — `getProfile`, `getProfileWithListings`, `getUserFavoriteListings`
+- **`src/components/profile/ProfileForm.tsx`** — Client-Form: Avatar-Upload mit Live-Preview, Toggle-Switches für E-Mail/Telefon-Sichtbarkeit, Inline Erfolgs/Fehler-Feedback
+
+### Geänderte Seiten
+- **`src/app/(protected)/profil/page.tsx`** — Vollständiges Dashboard:
+  - Profil-Formular links
+  - Rechts: "Meine Angebote" mit Status-Badge + Aktionen (Pausieren/Aktivieren, Bearbeiten, Löschen)
+  - Abschnitt "Meine Favoriten" mit ListingGrid
+  - Abmelden-Button
+- **`src/app/profil/[id]/page.tsx`** — Öffentliches Profil:
+  - Avatar, Name, Stadtteil, Mitglied-seit
+  - Bio + Kontaktdaten (respektiert show_email/show_phone)
+  - Alle aktiven Angebote als Grid
+
+### Git
+- Commit: `69418f6` — feat: Phase 5
+- TypeScript: 0 Fehler → Vercel baut
+
+### Noch offen
+- **Phase 7**: Launch-Prep (E-Mail Templates, Custom Domain, Seed-Daten, Lighthouse)
+
+---
+
 ## 2026-02-25T09:35Z — antigravity — Phase 4: Favoriten, Pagination & Bugfixes
 
 ### Neue Dateien
