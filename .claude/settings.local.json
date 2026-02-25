@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:meindeinunser.com)",
+      "WebFetch(domain:supabase.com)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --use-npm --yes)",
+      "Bash(git init)",
+      "Bash(git remote add origin https://github.com/vibeY434/meindeinunser.git)",
+      "Bash(npm install clsx tailwind-merge zod @supabase/supabase-js @supabase/ssr)",
+      "Bash(npx next build)",
+      "Bash(git add .gitignore .env.example README.md eslint.config.mjs middleware.ts next.config.ts package.json package-lock.json postcss.config.mjs tsconfig.json public/ src/ supabase/ .claude/settings.local.json)",
+      "Bash(git add README.md)",
+      "Bash(git rebase --continue)",
+      "Bash(git add -A)",
+      "Bash(GIT_EDITOR=true git rebase --continue)"
+    ]
+  }
+}
