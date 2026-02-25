@@ -2,6 +2,38 @@
 
 ---
 
+## 2026-02-25T09:15Z — antigravity — Phase 3: Bilder-Upload
+
+### Neue Dateien
+- **`src/lib/actions/upload.ts`** — Server Action für Signed Upload URLs (`getUploadUrl`) und Bild-Löschen (`deleteImage`). Uploads gehen direkt Browser → Supabase Storage (kein 1MB-Limit).
+- **`src/components/listings/ImageUpload.tsx`** — Vollständige Upload-Komponente:
+  - Drag & Drop + Klick-Auswahl
+  - Multi-File Support (max. 5 Bilder, max. 5 MB/Stück, JPG/PNG/WebP/GIF)
+  - Live-Vorschau-Grid mit Remove-Button (on hover)
+  - „Titelbild"-Badge auf erstem Bild
+  - Spinner während Upload, eigene Fehleranzeige
+- **`src/components/listings/ImageGallery.tsx`** — Client-seitige Galerie für Detailseite:
+  - Großes Hauptbild mit `next/image` (optimiert, lazy)
+  - Klickbare Thumbnails bei mehreren Bildern
+  - Unterstützt sowohl Storage-Pfade als auch volle URLs (Abwärtskompatibilität)
+
+### Geänderte Dateien
+- **`src/components/listings/ListingForm.tsx`** — `ImageUpload` integriert; `images`-State verwaltet Pfad-Array, wird als JSON in FormData serialisiert
+- **`src/app/angebote/[id]/page.tsx`** — Einzelbild durch `ImageGallery` ersetzt; `Image`-Import entfernt
+- **`next.config.ts`** — `remotePatterns` für `svsfwenqmpcdlpyyytgd.supabase.co` hinzugefügt
+
+### Git
+- Commit: `4c93638` — feat: Phase 3 — Bilder-Upload
+- TypeScript: 0 Fehler (`tsc --noEmit`)
+- Gepusht → Vercel auto-deploy läuft
+
+### Noch offen
+- **Phase 4**: ContactButton, FavoriteButton, Pagination
+- **Phase 5**: Profil-Dashboard, Avatar-Upload
+- **Phase 7**: Launch-Prep
+
+---
+
 ## 2026-02-25T08:52Z — antigravity — VPS-Setup & Bestandsaufnahme
 
 ### VPS-Setup
