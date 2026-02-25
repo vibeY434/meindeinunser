@@ -190,3 +190,23 @@ Altstadt, Bretzenheim, Drais, Ebersheim, Finthen, Gonsenheim, Hartenberg-Münchf
 NEXT_PUBLIC_SUPABASE_URL=https://svsfwenqmpcdlpyyytgd.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=<anon-key>
 ```
+
+---
+
+## Zukünftige Feature-Ideen (Backlog)
+*Bewertet und aktualisiert von antigravity am 2026-02-25T10:58Z*
+
+Folgende Ideen wurden geprüft und für nach den Launch (Post-MVP) vermerkt:
+
+1. **✅ Neueste Angebote auf der Landingpage (anonymisiert):**
+   - **Idee:** Die neuesten drei Inserate werden auf der Startseite angeteasert.
+   - **Bewertung:** Hervorragendes Feature für Konversion und Trust. Aus Datenschutzgründen wird für nicht-eingeloggte Gäste nur das Bild, der Titel und der Stadtteil sichtbar sein (keine Namen, Kontaktdaten oder volle Beschreibungen). Klick darauf leitet zum Login/Registrieren.
+
+2. **🗺️ Kartenansicht (Map-View) für Angebote (Unscharfer Radius):**
+   - **Idee:** Angebote auf einer interaktiven Karte markieren, um die lokale Nähe zu betonen.
+   - **Bewertung & Privacy-Fix:** Wir zeigen NIEMALS die Hausnummer. Es wird entweder nur das Zentrum der Straße gepinnt oder ein Radius von ca. 500 Metern um die Adresse gezogen. Das schützt vor Diebstählen (z. B. teures Werkzeug, Bikes). OpenStreetMap/Leaflet ist hierfür die beste Wahl.
+
+3. **💬 Nachrichten & Manueller Verleih-Status (statt hartem Buchungskalender):**
+   - **Ursprungs-Idee:** Ein harter Kalender (von-bis) für Ausleihen.
+   - **Bewertung:** Ein echtes Buchungssystem sprengt die Komplexität und bringt rechtliche Haftungsrisiken (verbindlicher Leihvertrag). 
+   - **Beschluss/Alternative:** Wir implementieren eine einfache **Nachrichtenfunktion (Chat/Freitext)**. Der Suchende fragt formlos an: *"Ist die Dachbox am Wochenende 12.-14. noch da?"*. Der Verleiher bestätigt und stellt sein Inserat in dieser Zeit mit zwei Klicks manuell auf den Status **"Pausiert"**. Das hält die Plattform simpel und rechtlich unangreifbar.
