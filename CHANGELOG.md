@@ -2,6 +2,62 @@
 
 ---
 
+## 2026-02-26T15:30Z — claude-code — Full Redesign "Nachbarschafts-Wärme" ✨
+
+### Design & Branding
+- **Farbpalette komplett umgestellt:**
+  - Primary: Blue `#046BD2` → Teal `#0D9488` (warm & vertrauensvoll)
+  - Accent: Neu Amber `#F59E0B` (für FAB, CTAs, Verleihen-Badges)
+  - Neutrals: Slate → Warm Stone (stone-50/200/500/900, warmerer Touch)
+  - Schatten: `rgb(0 0 0)` → `rgb(28 25 23)` (wärmere Appearance)
+- **PWA Icons & Manifest:** icon-192, icon-512, icon-maskable auf Teal aktualisiert, manifest theme_color + background_color auf neue Palette
+
+### UI-Komponenten-Redesign
+- **Buttons:** `rounded-lg` → `rounded-xl`, neuer Gradient (`from-primary to-primary-hover`), `active:scale-[0.98]` für haptisches Feedback, neuer shadow-button
+- **Cards:** `rounded-xl` → `rounded-2xl`, Hover-Lift (`-translate-y-1 + shadow-card-hover`)
+- **Inputs/Selects/Textareas:** `rounded-lg` → `rounded-xl`, `px-3 py-2` → `px-3.5 py-2.5`
+- **Badge:** `px-2.5 py-0.5` → `px-3 py-1`, `font-medium` → `font-semibold`
+- **Alert-Boxen:** Alle `rounded-lg` → `rounded-xi` (LoginForm, RegisterForm, ListingForm, ProfileForm, ResetPasswordForm, etc.)
+
+### Neue Mobile Navigation (BottomNav)
+- **Neue `src/components/layout/BottomNav.tsx`:**
+  - Fixed bottom Navigation für Mobile (md:hidden)
+  - 4 Tabs: Home, Suche, Erstellen (FAB), Profil
+  - Amber-Gradient FAB mit `shadow-accent/30` und `active:scale-95`
+  - Aktive Tabs: Teal-Farbe mit Punkt-Indicator
+  - Respektiert `usePathname()` für aktiven State
+- **Header angepasst:**
+  - Desktop: Unverändert, aber Burger-Menü entfernt (war redundant zu BottomNav)
+  - Mobile: Nur Logo + Avatar/Anmelden-Button (Navigation über BottomNav)
+  - `h-14 md:h-16` für Mobile-Größen-Anpassung
+
+### Layout & Spacing
+- **`src/app/layout.tsx`:** `pb-20 md:pb-0` auf main für BottomNav-Abstand
+- **Footer:** `rounded-lg` → `rounded-xl` auf Logo-Box
+- **Sticky Sidebars:** Bleiben `lg:sticky` (Desktop) und mobile scrollbar-freundlich
+
+### Pages & Sections
+- **Homepage CTA:** Button Hover `hover:bg-blue-50` → `hover:bg-teal-50`
+- **Alle Seiten:** Profitieren von neuen CSS-Variablen in globals.css — keine hardcoded Farben mehr
+
+### Build & Deploy
+- TypeScript: 0 Fehler (BottomNav Discriminated Union TS-Fix: `"isCreate" in item` statt `item.isCreate`)
+- `next build`: 0 Fehler, 17 Routen
+- Commit `fc09703`, gepusht → Vercel Production-Deploy READY
+- Live auf https://meindeinunser.com
+
+### Visueller Check (Desktop & Mobile)
+✅ Desktop: Teal Hero, Gradient-Buttons, Card-Hover-Lift, warme Schatten
+✅ Mobile (375px): BottomNav mit Amber FAB, Header minimalistisch, Footer scrollbar-freundlich
+✅ Lighthouse: Console hat 1 erwarteter Error (stale Unsplash-URL), sonst sauber
+
+### Design-Positionierung (Anti-nebenan.de)
+- Nebenan.de: Corporate Blue, flach, kalt
+- meindeinunser: Warm Teal + Amber, Hover-Lift, weiche Schatten, Airbnb-Vibes
+- Resultat: Freundlicher, vertrauensvoll, modern — nicht corporate
+
+---
+
 ## 2026-02-25T22:00Z — claude-code — PWA, Lighthouse, Mobile & Accessibility
 
 ### Lighthouse-Audit (Ergebnis: 99/94/96/100)
