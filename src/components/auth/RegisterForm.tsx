@@ -27,7 +27,7 @@ export function RegisterForm() {
 
   if (success) {
     return (
-      <div className="rounded-lg bg-verschenken-light p-6 text-center">
+      <div className="rounded-xl bg-verschenken-light p-6 text-center">
         <svg
           className="mx-auto h-10 w-10 text-verschenken mb-3"
           fill="none"
@@ -48,7 +48,7 @@ export function RegisterForm() {
   return (
     <form action={handleSubmit} className="space-y-4">
       {error && (
-        <div className="rounded-lg bg-error-light p-3 text-sm text-error">
+        <div className="rounded-xl bg-error-light p-3 text-sm text-error">
           {error}
         </div>
       )}

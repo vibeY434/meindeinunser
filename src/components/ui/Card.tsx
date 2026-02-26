@@ -10,8 +10,8 @@ export function Card({ children, className, hover = false }: CardProps) {
   return (
     <div
       className={cn(
-        "rounded-xl border border-border bg-surface shadow-card overflow-hidden",
-        hover && "transition-shadow hover:shadow-card-hover",
+        "rounded-2xl border border-border bg-surface shadow-card overflow-hidden",
+        hover && "transition-all duration-200 hover:-translate-y-1 hover:shadow-card-hover",
         className
       )}
     >

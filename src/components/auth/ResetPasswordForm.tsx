@@ -24,9 +24,9 @@ export function ResetPasswordForm() {
 
   if (success) {
     return (
-      <div className="rounded-lg bg-primary-light p-6 text-center">
+      <div className="rounded-xl bg-primary-light p-6 text-center">
         <h3 className="text-base font-semibold text-primary">E-Mail gesendet!</h3>
-        <p className="mt-2 text-sm text-blue-700">
+        <p className="mt-2 text-sm text-teal-700">
           Falls ein Konto mit dieser E-Mail-Adresse existiert, erhältst du einen Link zum Zurücksetzen deines Passworts.
         </p>
       </div>
@@ -36,7 +36,7 @@ export function ResetPasswordForm() {
   return (
     <form action={handleSubmit} className="space-y-4">
       {error && (
-        <div className="rounded-lg bg-error-light p-3 text-sm text-error">
+        <div className="rounded-xl bg-error-light p-3 text-sm text-error">
           {error}
         </div>
       )}

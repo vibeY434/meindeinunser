@@ -148,7 +148,7 @@ export default async function HomePage() {
                 <Button
                   variant="secondary"
                   size="lg"
-                  className="bg-white text-primary hover:bg-blue-50"
+                  className="bg-white text-primary hover:bg-teal-50"
                 >
                   Kostenlos registrieren
                 </Button>

@@ -81,7 +81,7 @@ export function ListingFilters() {
         <select
           value={currentCategory}
           onChange={(e) => updateParams("category", e.target.value)}
-          className="flex-1 rounded-lg border border-border bg-surface px-3 py-2 text-sm text-text transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+          className="flex-1 rounded-xl border border-border bg-surface px-3.5 py-2.5 text-sm text-text transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
         >
           <option value="">Alle Kategorien</option>
           {CATEGORIES.map((cat) => (
@@ -94,7 +94,7 @@ export function ListingFilters() {
         <select
           value={currentDistrict}
           onChange={(e) => updateParams("district", e.target.value)}
-          className="flex-1 rounded-lg border border-border bg-surface px-3 py-2 text-sm text-text transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+          className="flex-1 rounded-xl border border-border bg-surface px-3.5 py-2.5 text-sm text-text transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
         >
           <option value="">Alle Stadtteile</option>
           {MAINZ_DISTRICTS.map((d) => (

@@ -90,8 +90,8 @@ export function ProfileForm({ profile }: ProfileFormProps) {
             </div>
 
             <form action={handleSubmit} className="space-y-5">
-                {error && <div className="rounded-lg bg-red-50 p-3 text-sm text-red-600">{error}</div>}
-                {success && <div className="rounded-lg bg-green-50 p-3 text-sm text-green-700">Profil gespeichert ✓</div>}
+                {error && <div className="rounded-xl bg-error-light p-3 text-sm text-error">{error}</div>}
+                {success && <div className="rounded-xl bg-verschenken-light p-3 text-sm text-green-700">Profil gespeichert</div>}
 
                 <Input id="display_name" name="display_name" label="Anzeigename" defaultValue={profile.display_name} required maxLength={50} />
                 <Input id="phone" name="phone" label="Telefon" type="tel" placeholder="+49 151 ..." defaultValue={profile.phone ?? ""} />

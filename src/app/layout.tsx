@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { BottomNav } from "@/components/layout/BottomNav";
 import { CookieBanner } from "@/components/shared/CookieBanner";
 import { ServiceWorkerRegistrar } from "@/components/shared/ServiceWorkerRegistrar";
 import "./globals.css";
@@ -39,8 +40,9 @@ export default function RootLayout({
     <html lang="de">
       <body className={`${geistSans.variable} font-sans antialiased flex flex-col min-h-screen`}>
         <Header />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 pb-20 md:pb-0">{children}</main>
         <Footer />
+        <BottomNav />
         <CookieBanner />
         <ServiceWorkerRegistrar />
       </body>

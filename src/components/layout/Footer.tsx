@@ -10,7 +10,7 @@ export function Footer() {
           <div className="flex flex-col sm:flex-row justify-between gap-6 mb-8">
             <div>
               <Link href="/" className="flex items-center gap-2 mb-2">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-white font-bold text-sm">
+                <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-primary text-white font-bold text-sm">
                   M
                 </div>
                 <span className="text-base font-bold text-text">

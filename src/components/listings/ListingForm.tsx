@@ -45,7 +45,7 @@ export function ListingForm({ listing }: ListingFormProps) {
   return (
     <form action={handleSubmit} className="space-y-6">
       {error && (
-        <div className="rounded-lg bg-error-light p-3 text-sm text-error">
+        <div className="rounded-xl bg-error-light p-3 text-sm text-error">
           {error}
         </div>
       )}
@@ -70,7 +70,7 @@ export function ListingForm({ listing }: ListingFormProps) {
               type="button"
               onClick={() => setSelectedType(type.value)}
               className={cn(
-                "rounded-lg border-2 px-3 py-3 text-sm font-medium transition-all text-center",
+                "rounded-xl border-2 px-3 py-3 text-sm font-medium transition-all text-center",
                 selectedType === type.value
                   ? "border-primary bg-primary-light text-primary"
                   : "border-border bg-surface text-text-light hover:border-border-hover"

@@ -18,13 +18,13 @@ export default async function LoginPage({
       <h1 className="text-2xl font-bold text-text text-center mb-6">Anmelden</h1>
 
       {params.success === "password-reset" && (
-        <div className="mb-4 rounded-lg bg-verschenken-light p-3 text-sm text-green-800 text-center">
+        <div className="mb-4 rounded-xl bg-verschenken-light p-3 text-sm text-green-800 text-center">
           Passwort erfolgreich geändert. Du kannst dich jetzt anmelden.
         </div>
       )}
 
       {params.error === "auth" && (
-        <div className="mb-4 rounded-lg bg-error-light p-3 text-sm text-error text-center">
+        <div className="mb-4 rounded-xl bg-error-light p-3 text-sm text-error text-center">
           Anmeldung fehlgeschlagen. Bitte versuche es erneut.
         </div>
       )}

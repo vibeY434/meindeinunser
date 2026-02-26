@@ -22,7 +22,7 @@ export function NewPasswordForm() {
   return (
     <form action={handleSubmit} className="space-y-4">
       {error && (
-        <div className="rounded-lg bg-error-light p-3 text-sm text-error">
+        <div className="rounded-xl bg-error-light p-3 text-sm text-error">
           {error}
         </div>
       )}

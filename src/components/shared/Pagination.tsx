@@ -59,7 +59,7 @@ export function Pagination({ total, perPage, currentPage }: PaginationProps) {
                             onClick={() => goToPage(page)}
                             aria-label={`Seite ${page}`}
                             aria-current={page === currentPage ? "page" : undefined}
-                            className={`h-10 w-10 rounded-lg text-sm font-medium transition-colors ${page === currentPage
+                            className={`h-10 w-10 rounded-xl text-sm font-medium transition-colors ${page === currentPage
                                     ? "bg-primary text-white"
                                     : "text-text-light hover:bg-border"
                                 }`}

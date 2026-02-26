@@ -12,20 +12,20 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "bg-primary text-white hover:bg-primary-hover shadow-sm",
+    "bg-gradient-to-b from-primary to-primary-hover text-white shadow-button hover:from-primary-hover hover:to-primary-hover active:scale-[0.98]",
   secondary:
-    "bg-primary-light text-primary hover:bg-blue-100",
+    "bg-primary-light text-primary hover:bg-teal-100 active:scale-[0.98]",
   outline:
-    "border border-border bg-surface text-text hover:bg-background hover:border-border-hover",
+    "border border-border bg-surface text-text hover:bg-background hover:border-border-hover active:scale-[0.98]",
   ghost:
-    "text-text-light hover:bg-background hover:text-text",
+    "text-text-light hover:bg-background hover:text-text active:scale-[0.98]",
   danger:
-    "bg-error text-white hover:bg-red-700",
+    "bg-error text-white hover:bg-red-700 active:scale-[0.98]",
 };
 
 const sizes: Record<ButtonSize, string> = {
-  sm: "px-3 py-1.5 text-sm",
-  md: "px-4 py-2 text-sm",
+  sm: "px-3.5 py-1.5 text-sm",
+  md: "px-4 py-2.5 text-sm",
   lg: "px-6 py-3 text-base",
 };
 
@@ -35,7 +35,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         className={cn(
-          "inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+          "inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
           variants[variant],
           sizes[size],
           className
