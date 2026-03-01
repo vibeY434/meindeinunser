@@ -2,6 +2,18 @@
 
 ---
 
+## 2026-03-01T20:00Z — antigravity — Legal & Compliance TODO
+
+### Wichtige rechtliche Überprüfung (Supabase)
+Es müssen dringend die datenschutzrechtlichen Rahmenbedingungen für den Einsatz von Supabase (wo User-Profile inkl. E-Mails, Telefonnummern etc. gespeichert werden) geprüft und formalisiert werden:
+- **AVV (Auftragsverarbeitungsvertrag):** Zwingend mit Supabase nach Art. 28 DSGVO abzuschließen.
+- **Serverstandort:** Sicherstellen, dass die Supabase-Region innerhalb der EU liegt (z.B. AWS `eu-central-1`).
+- **Datenschutzerklärung:** Supabase muss explizit als Dienstleister in der Datenschutzerklärung aufgeführt werden, inklusive Zweck der Datenverarbeitung und Speicherdauer.
+- **Opt-in & Löschfunktion:** Sicherstellen, dass Nutzer beim Registrieren der Datenschutzerklärung zustimmen und ihr Profil (`/profil`) selbstständig unwiderruflich löschen können.
+- **Transparenz:** E-Mail-Templates (z.B. Magic Links) auf verständliches Deutsch umstellen.
+
+---
+
 ## 2026-02-26T15:30Z — claude-code — Full Redesign "Nachbarschafts-Wärme" ✨
 
 ### Design & Branding
